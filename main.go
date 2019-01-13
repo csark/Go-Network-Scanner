@@ -1,3 +1,6 @@
+// TODO: Do a ping sweep first
+// TODO: Fix scanning a single IP address
+
 package main
 
 import (
@@ -337,6 +340,8 @@ func getPorts(portsParameter string) (begin int, end int, err error) {
 			end = maxPort
 			err = fmt.Errorf("port value: %d is out of ports range", begin)
 		}
+	} else {
+		end = begin
 	}
 
 	if begin > end {
