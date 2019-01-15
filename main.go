@@ -40,9 +40,8 @@ func main() {
 	a := cli.NewApp()
 	a.Name = "NetScanner"
 	a.Usage = "Network IP addresses and ports scanner"
-	a.Author = "Valentyn Ponomarenko"
+	a.Author = "Clark Hatch"
 	a.Version = VERSION
-	a.Email = "bootloader@list.ru"
 
 	a.Flags = []cli.Flag{
 		cli.StringFlag{
