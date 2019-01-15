@@ -1,10 +1,6 @@
 # Golang Network Port Scanner [![License](https://img.shields.io/dub/l/vibe-d.svg)](https://opensource.org/licenses/MIT)
 
-Simple command line tool to scan network ports.
-
-The main requirement for the tool to accept individual IP, range of IPs in regular format or CIDR (Classless Inter-Domain Routing). The utility are free to use or change.
-
-There was no requirement to build like a package, but you can easily converted it. Enjoy coding.
+Simple command line tool to scan network ports based on [P-A-R-U-S](https://github.com/P-A-R-U-S)'s work.
 
 ## Example
 
