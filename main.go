@@ -1,7 +1,6 @@
 // TODO: Do a ping sweep first
 // TODO: Fix scanning IP when inputted as a range
 // TODO: Fix verbosity
-// TODO: Fix menu popping up
 
 package main
 
@@ -65,14 +64,27 @@ func main() {
 		},
 	}
 
+	a.Before = func(c *cli.Context) error {
+    fmt.Fprintf(c.App.Writer, "\nScan starting now....\n\n")
+    return nil
+  }
+
+	a.After = func(c *cli.Context) error {
+    fmt.Fprintf(c.App.Writer, "\nScan Complete!\n\n")
+    return nil
+  }
+
 	a.Action = func(c *cli.Context) error {
 		var err error
+		var args = false
 
-		if len(c.Args()) == 0 {
-			cli.ShowAppHelp(c)
-		}
+		// if len(c.Args()) < 1 {
+		// 	cli.ShowAppHelp(c)
+		// 	log.Printf("Why am I triggering? c.Args is %d characters long", len(c.Args()))
+		// }
 
 		if c.IsSet("ip") {
+			args = true
 			CIDRs, err = getCIDRs(c.String("ip"))
 			if err != nil {
 				log.Fatalf("not able to parse 'ips' parameter value: %s.", err)
@@ -80,6 +92,7 @@ func main() {
 		}
 
 		if c.IsSet("t") || c.IsSet("timeout") {
+			args = true
 			timeout, err = getTimeout(c.String("t"))
 			if err != nil {
 				log.Fatalf("not able to parse 'timeout' parameter value: %s.", err)
@@ -87,6 +100,7 @@ func main() {
 		}
 
 		if c.IsSet("protocol") || c.IsSet("pc") {
+			args = true
 			protocols, err = getProtocols(c.String("protocol"))
 			if err != nil {
 				log.Fatalf("not able to parse 'protocol' parameter value: %s. Following port value would be used: %d,%d",
@@ -95,10 +109,16 @@ func main() {
 		}
 
 		if c.IsSet("port") || c.IsSet("p") {
+			args = true
 			portStart, portEnd, err = getPorts(c.String("port"))
 			if err != nil {
 				log.Fatalf("not able to parse 'port' parameter value: %s", err)
 			}
+		}
+
+		if args == false {
+			cli.ShowAppHelp(c)
+			os.Exit(1)
 		}
 
 		//Scan CIDR address
