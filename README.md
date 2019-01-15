@@ -1,8 +1,8 @@
 Need this package https://github.com/urfave/cli.git
 
-# Golang Network Port Scanner [![Travis-CI](https://travis-ci.org/P-A-R-U-S/Go-Network-Scanner.svg?branch=master)](https://travis-ci.org/P-A-R-U-S/Go-Network-Scanner) [![License](https://img.shields.io/dub/l/vibe-d.svg)](https://opensource.org/licenses/MIT)
+# Golang Network Port Scanner [![License](https://img.shields.io/dub/l/vibe-d.svg)](https://opensource.org/licenses/MIT)
 
-Simple command line tool to scan network ports. Command line tool was done as part of technical interview and as example for article on [HabraHabr.ru](https://habrahabr.ru/post/351574/).
+Simple command line tool to scan network ports.
 
 The main requirement for the tool to accept individual IP, range of IPs in regular format or CIDR (Classless Inter-Domain Routing). The utility are free to use or change.
 
@@ -43,15 +43,11 @@ Output:
     ......
 ```
 
-## Contributing
-
-We welcome pull requests, bug fixes and issue reports.
-
-Before proposing a change, please discuss your change by raising an issue.
-
 ## Authors
 
 * **Valentyn Ponomarenko** - *Initial work* - [P-A-R-U-S](https://github.com/P-A-R-U-S)
+
+* **Clark Hatch** - *Personalization & Experimentation* - [csark](https://github.com/csark)
 
 ## License
 
