@@ -1,5 +1,7 @@
 // TODO: Do a ping sweep first
-// TODO: Fix scanning a single IP address
+// TODO: Fix scanning IP when inputted as a range
+// TODO: Fix verbosity
+// TODO: Fix menu popping up
 
 package main
 
@@ -28,7 +30,7 @@ var (
 	CIDRs     []string
 	portStart = 1
 	portEnd   = 65535
-	protocols = []string{"tcp", "udp"}
+	protocols = []string{"tcp"}
 	timeout   = time.Microsecond * 2000
 	wg        sync.WaitGroup
 )
@@ -45,7 +47,7 @@ func main() {
 	a.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:  "ip",
-			Usage: "IP range, e.g --ip 127.0.0.1/12, 10.0.1.1-10.0.1.12",
+			Usage: "IP range, e.g --ip 127.0.0.1/12, 10.0.1.1-10.0.1.12 (range not supported at the moment)",
 		},
 		cli.StringFlag{
 			Name:  "protocol, pc",
@@ -130,6 +132,7 @@ func scan(cidr string) (err error) {
 	}
 
 	ip, ipNet, err = net.ParseCIDR(cidr)
+	// log.Printf("IP: %s, ipNet: %s, err: %s", ip, ipNet, err)
 
 	if err != nil {
 		log.Printf("CIDR address not in correct format %s", err)
@@ -277,13 +280,15 @@ func getCIDRs(ipsParameter string) (cidrs []string, err error) {
 
 	paramParts := strings.Split(ipsParameter, ",")
 
-	var cidrRegEx = regexp.MustCompile(`^([0-9]{1,3}\.){3}[0-9]{1,3}?$`)
+	var cidrRegEx = regexp.MustCompile(`^([0-9]{1,3}\.){3}[0-9]{1,3}/([0-9]{1,2})?$`)
 
 	for _, v := range paramParts {
 		paramParts := strings.TrimSpace(v)
+		// log.Printf("paramParts: %s", paramParts)
 
 		if cidrRegEx.MatchString(paramParts) {
 			cidrs = append(cidrs, paramParts)
+			// log.Printf("cidrs contains %s", cidrs)
 			continue
 		}
 
@@ -294,8 +299,11 @@ func getCIDRs(ipsParameter string) (cidrs []string, err error) {
 		if len(ipParamParts) > 1 {
 			ipEnd = strings.TrimSpace(ipParamParts[1])
 		}
+		// log.Printf("ipstart: %s, ipend: %s", ipStart, ipEnd)
 
 		paramPartsCidrs, err := iPv4RangeToCIDRRange(ipStart, ipEnd)
+
+		// log.Printf("paramPartsCidrs: %s", paramPartsCidrs)
 
 		if err != nil {
 			fmt.Errorf("enable to parse IP range: %s - %s", ipStart, ipEnd)

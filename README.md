@@ -1,3 +1,5 @@
+Need this package https://github.com/urfave/cli.git
+
 # Golang Network Port Scanner [![Travis-CI](https://travis-ci.org/P-A-R-U-S/Go-Network-Scanner.svg?branch=master)](https://travis-ci.org/P-A-R-U-S/Go-Network-Scanner) [![License](https://img.shields.io/dub/l/vibe-d.svg)](https://opensource.org/licenses/MIT)
 
 Simple command line tool to scan network ports. Command line tool was done as part of technical interview and as example for article on [HabraHabr.ru](https://habrahabr.ru/post/351574/).
@@ -6,7 +8,7 @@ The main requirement for the tool to accept individual IP, range of IPs in regul
 
 There was no requirement to build like a package, but you can easily converted it. Enjoy coding.
 
-## Example 
+## Example
 
 ```
 $ ./netscanner --ip 10.0.1.1-10.0.1.11,10.0.1.12/32 --p 80 --pc tcp,udp --t 3000
@@ -14,16 +16,16 @@ $ ./netscanner --ip 10.0.1.1-10.0.1.11,10.0.1.12/32 --p 80 --pc tcp,udp --t 3000
 Parameters:
     NAME:
        NetScanner - Network IP addresses and ports scanner
-    
+
     USAGE:
        netscanner [global options] command [command options] [arguments...]
-    
+
     AUTHOR:
        Valentyn Ponomarenko <bootloader@list.ru>
-    
+
     COMMANDS:
          help, h  Shows a list of commands or help for one command
-    
+
     GLOBAL OPTIONS:
        --ip value                    IP range, e.g --ip 127.0.0.1/12, 10.0.1.1-10.0.1.12
        --protocol value, --pc value  protocol for IP(s) scan, e.g --pc tcp (default: "tcp,udp")
@@ -43,7 +45,7 @@ Output:
 
 ## Contributing
 
-We welcome pull requests, bug fixes and issue reports. 
+We welcome pull requests, bug fixes and issue reports.
 
 Before proposing a change, please discuss your change by raising an issue.
 
