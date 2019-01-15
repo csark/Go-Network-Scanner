@@ -21,7 +21,7 @@ Parameters:
          help, h  Shows a list of commands or help for one command
 
     GLOBAL OPTIONS:
-       --ip value                    IP range, e.g --ip 127.0.0.1/12, 10.0.1.1-10.0.1.12
+       --ip value                    IP range, e.g --ip 127.0.0.1/12, 10.0.1.1-10.0.1.12 (range input not currently working)
        --protocol value, --pc value  protocol for IP(s) scan, e.g --pc tcp (default: "tcp,udp")
        --port value, -p value        port range to scan, e.g --port 1-200 (default: "1-65535")
        --timeout value, -t value     timeOut n milliseconds, e.g. --t 3000 or --t 2s or --t 3000ms (default: "2000")
