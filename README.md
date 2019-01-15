@@ -1,5 +1,3 @@
-Need this package https://github.com/urfave/cli.git
-
 # Golang Network Port Scanner [![License](https://img.shields.io/dub/l/vibe-d.svg)](https://opensource.org/licenses/MIT)
 
 Simple command line tool to scan network ports.
@@ -42,6 +40,9 @@ Output:
     2018/03/19 23:40:20 tcp://10.0.1.1:139 is alive and reachable
     ......
 ```
+
+## External Package Requirement
+[cli](https://github.com/urfave/cli.git) - A simple, fast, and fun package for building command line apps in Go
 
 ## Authors
 
